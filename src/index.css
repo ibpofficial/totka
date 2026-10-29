@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg: #F7F4EE;
+    --color-surface: #FFFFFF;
+    --color-surface-subtle: #EFECE3;
+    --color-ink: #0A0D0C;
+    --color-muted: #5C6460;
+    --color-haldi: #FFB800;
+    --color-chilli: #FF3B1D;
+    --color-forest: #142920;
+  }
+
+  /* Global hidden scrollbars */
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+
+.font-heading {
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono-street {
+  font-family: 'Space Grotesk', monospace;
+}
+
+.font-impact {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* Tactile Neo-Brutalist Shadows */
+.neo-shadow {
+  box-shadow: 4px 4px 0px #0A0D0C;
+}
+
+.neo-shadow:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #0A0D0C;
+}
+
+.neo-shadow-sm {
+  box-shadow: 3px 3px 0px #0A0D0C;
+}
+
+.neo-shadow-lg {
+  box-shadow: 8px 8px 0px #0A0D0C;
+}
+
+.neo-shadow-yellow {
+  box-shadow: 6px 6px 0px #FFB800;
+}
+
+.neo-shadow-red {
+  box-shadow: 6px 6px 0px #FF3B1D;
+}
+
+/* Subtle Natural Imperfections / Organic Rotations */
+.wabi-sabi-1 {
+  transform: rotate(-1.2deg);
+}
+
+.wabi-sabi-2 {
+  transform: rotate(1.4deg);
+}
+
+.wabi-sabi-3 {
+  transform: rotate(-0.8deg);
+}
+
+/* Raw Paper Subtle Texture */
+.bg-raw-canvas {
+  background-image: 
+    radial-gradient(rgba(10, 13, 12, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(10, 13, 12, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px;
+}
+
+/* Hazard Tape Pattern */
+.bg-hazard-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #FFB800,
+    #FFB800 12px,
+    #0A0D0C 12px,
+    #0A0D0C 24px
+  );
+}
+
+/* Realistic Talisman Pendulum Motion */
+@keyframes pendulum {
+  0% { transform: rotate(-11deg); }
+  50% { transform: rotate(11deg); }
+  100% { transform: rotate(-11deg); }
+}
+
+@keyframes pendulum-wild {
+  0% { transform: rotate(-24deg); }
+  50% { transform: rotate(24deg); }
+  100% { transform: rotate(-24deg); }
+}
+
+.animate-pendulum {
+  transform-origin: top center;
+  animation: pendulum 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.animate-pendulum-wild {
+  transform-origin: top center;
+  animation: pendulum-wild 0.7s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Uiverse Contact Card Styles provided by User */
+.uiverse-contact-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 34px 28px;
+  background: #fff;
+  border: 6px solid #000;
+  box-shadow: 12px 12px 0 #000;
+  transform: rotate(-1.8deg);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.uiverse-contact-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 18px 18px 0 #000;
+}
+
+.uiverse-contact-card:active {
+  animation: shake 0.5s ease-in-out;
+}
+
+.uiverse-banner {
+  position: absolute;
+  top: 18px;
+  right: -95px;
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  width: 340px;
+  text-align: center;
+  transform: rotate(45deg);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 2px;
+  overflow: hidden;
+  transition: background 0.4s ease;
+  z-index: 10;
+}
+
+.uiverse-banner-text {
+  display: inline-block;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  width: 100%;
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.uiverse-banner:hover .uiverse-banner-text:first-child {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.uiverse-banner:hover .uiverse-banner-text:last-child {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.uiverse-banner-text:last-child {
+  opacity: 0;
+  transform: translateY(60%);
+}
+
+.uiverse-banner:hover {
+  background: #FF3B1D;
+}
+
+.uiverse-input {
+  padding: 12px 14px;
+  border: 3.5px solid #000;
+  font-size: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.25s ease;
+  background-color: #fff;
+  color: #000;
+  outline: none;
+}
+
+.uiverse-input:focus {
+  transform: scale(1.02);
+  border-color: #000;
+  box-shadow: 4px 4px 0 #FFB800;
+}
+
+.uiverse-btn {
+  border: 4px solid #000;
+  background: #000;
+  color: #fff;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Syne', sans-serif;
+}
+
+.uiverse-btn:hover {
+  background: #FFB800;
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 #000;
+}
+
+.uiverse-btn:active {
+  animation: shake 0.5s ease-in-out;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
