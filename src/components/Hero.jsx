@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { ArrowRight, Wand2 } from 'lucide-react';
+import { ArrowRight, Wand2, Shield, Sparkles } from 'lucide-react';
 import { audioFX } from '../utils/audio';
 
-export default function Hero({ onShopClick, onUnboxingClick, onOpenCustomStudio }) {
+export default function Hero({ onShopClick, onOpenCustomStudio, onNavigate }) {
   const [activeShirt, setActiveShirt] = useState(0); // 0: Charcoal, 1: White
   const [swayWild, setSwayWild] = useState(false);
 
   const shirts = [
     {
       name: 'Buri Nazar Waale Tee',
-      color: '260 GSM Washed Charcoal',
+      color: '260 GSM Mineral Washed Charcoal',
       image: '/totka-tshirt-main.png',
       price: '₹1,499'
     },
@@ -30,65 +30,69 @@ export default function Hero({ onShopClick, onUnboxingClick, onOpenCustomStudio 
   const current = shirts[activeShirt];
 
   return (
-    <section className="relative overflow-hidden bg-[#F7F4EE] bg-raw-canvas border-b-3 border-[#0A0D0C] py-6 lg:py-8 min-h-[calc(100vh-120px)] flex items-center">
-      {/* Subtle Imperfection Paper Stamp in Background */}
-      <div className="absolute top-4 right-1/3 w-32 h-6 bg-[#FFB800] opacity-40 rotate-[3deg] pointer-events-none hidden md:block border border-black/10"></div>
+    <section className="relative overflow-hidden bg-[#F7F6F2] border-b border-black/15 py-8 lg:py-12 min-h-[calc(100vh-100px)] flex items-center">
+      
+      {/* Editorial Decorative Grid Lines */}
+      <div className="absolute inset-0 bg-[radial-gradient(#121212_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Bold Organic Typography & Main USP */}
-          <div className="lg:col-span-7 space-y-4 text-left">
+          {/* Left Column: Refined Editorial Typography */}
+          <div className="lg:col-span-7 space-y-6 text-left">
             
-            {/* Minimalist Micro Tag with Natural Imperfection */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-black text-black text-[10px] font-mono-street font-bold tracking-widest uppercase neo-shadow-sm wabi-sabi-1">
-              <span className="w-2 h-2 rounded-full bg-[#FF3B1D]"></span>
-              DROP 01: AKHADA TO TAPRI • 260-280 GSM PURE TERRY
+            {/* Minimalist Micro Tag */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-black/20 text-black text-[10px] font-mono-street font-bold tracking-[0.2em] uppercase rounded-full shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#E03115]" />
+              <span>DROP 01: AKHADA TO TAPRI • 260-280 GSM PURE TERRY</span>
             </div>
 
             {/* Main Headline */}
             <div className="space-y-1">
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.95] text-[#0A0D0C] font-black uppercase">
+              <h1 className="font-heading text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.95] text-[#121212] font-black uppercase">
                 BURI NAZAR WAALE, <br />
-                <span className="bg-[#FFB800] px-2 py-0.5 border-2 border-black inline-block mt-1 wabi-sabi-3">
+                <span className="relative inline-block text-black">
                   TERA WEIGHT DROP.
+                  <span className="absolute bottom-1 left-0 w-full h-3 bg-[#FFB800]/40 -z-10 -rotate-1 rounded" />
                 </span>
               </h1>
             </div>
 
-            {/* Description */}
-            <p className="text-[#333] text-sm sm:text-base max-w-xl leading-relaxed font-normal">
-              A high-precision Indian activewear and comfort-wear label merging street-smart culture with protective superstition. Heavyweight <span className="text-black font-bold underline decoration-[#FF3B1D] underline-offset-4">240+ to 280 GSM oversized tees</span> engineered to outlast the heaviest deadlifts and post-workout tapri banter.
+            {/* Subtitle Description */}
+            <p className="text-[#444] text-sm sm:text-base max-w-xl leading-relaxed font-normal">
+              A high-precision Indian activewear and comfort-wear label merging street-smart culture with protective superstition. Heavyweight <strong className="text-black font-bold">240+ to 280 GSM oversized silhouettes</strong> engineered to outlast the heaviest deadlifts and post-workout tapri banter.
             </p>
 
-            {/* MAIN USP: CUSTOM LAB (Compact Neo-Brutalist Banner) */}
-            <div className="bg-white border-3 border-black p-4 rounded-xl neo-shadow transition-transform hover:-translate-y-0.5 wabi-sabi-1">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="space-y-0.5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[9px] font-mono-street font-bold bg-[#FF3B1D] text-white px-2 py-0.5 border border-black uppercase tracking-wider">
-                      MAIN USP
-                    </span>
-                    <span className="font-heading text-sm sm:text-base text-black font-black tracking-tight">
-                      CUSTOM TOTKA STUDIO
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[#555] max-w-sm">
-                    Customize your silhouette, demon crest, comic backprint & print your gym handle live.
-                  </p>
+            {/* Bespoke Studio Mini-Card */}
+            <div className="bg-white border border-black/20 p-4 sm:p-5 rounded-2xl shadow-sm transition-all hover:border-black flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-[9px] font-mono-street font-bold bg-[#E03115] text-white px-2 py-0.5 rounded uppercase tracking-wider">
+                    BESPOKE ATELIER
+                  </span>
+                  <span className="font-heading text-sm sm:text-base text-black font-black uppercase tracking-tight">
+                    CUSTOM TOTKA STUDIO
+                  </span>
                 </div>
-
-                <button
-                  onClick={() => {
-                    audioFX.playDhishum();
-                    onOpenCustomStudio();
-                  }}
-                  className="shrink-0 bg-[#FFB800] hover:bg-[#FFA500] text-black border-2 border-black px-4 py-2 rounded-lg text-xs font-bold font-mono-street tracking-wider uppercase flex items-center justify-center gap-1.5 neo-shadow-sm active:translate-y-0.5"
-                >
-                  <Wand2 className="w-3.5 h-3.5 text-[#FF3B1D]" />
-                  <span>DESIGN YOUR ARMOR</span>
-                </button>
+                <p className="text-[11px] text-[#666] font-mono-street max-w-sm">
+                  Choose your GSM grade, demon crest, comic backprint & stitch your personal lifter handle.
+                </p>
               </div>
+
+              <button
+                onClick={() => {
+                  audioFX.playDhishum();
+                  if (onNavigate) {
+                    onNavigate('custom');
+                  } else if (onOpenCustomStudio) {
+                    onOpenCustomStudio();
+                  }
+                }}
+                className="shrink-0 bg-[#121212] hover:bg-black text-[#FFB800] px-4 py-2.5 rounded-xl text-xs font-bold font-mono-street tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm transition-all active:translate-y-0.5"
+              >
+                <Wand2 className="w-3.5 h-3.5 text-[#FFB800]" />
+                <span>ENTER ATELIER</span>
+              </button>
             </div>
 
             {/* Action Buttons */}
@@ -98,113 +102,117 @@ export default function Hero({ onShopClick, onUnboxingClick, onOpenCustomStudio 
                   audioFX.playDhishum();
                   onShopClick();
                 }}
-                className="bg-black hover:bg-[#222] text-white border-2 border-black px-5 py-2.5 rounded-lg font-heading text-xs font-bold tracking-wider uppercase flex items-center gap-1.5 neo-shadow active:translate-y-0.5"
+                className="bg-[#FFB800] hover:bg-[#FFA500] text-black border border-black/30 px-6 py-3 rounded-xl font-mono-street text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-sm transition-all active:translate-y-0.5"
               >
-                <span>SHOP COLLECTION</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#FFB800]" />
+                <span>EXPLORE DROP 01</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
 
               <button
                 onClick={() => {
                   audioFX.playFlick();
-                  onUnboxingClick();
+                  if (onNavigate) onNavigate('lookbook');
                 }}
-                className="bg-white hover:bg-[#EFECE3] text-black border-2 border-black px-4 py-2.5 rounded-lg text-xs font-heading font-bold tracking-wide uppercase transition-colors"
+                className="bg-white hover:bg-neutral-100 text-black border border-black/20 px-5 py-3 rounded-xl font-mono-street text-xs font-bold tracking-wider uppercase transition-all shadow-sm"
               >
-                <span>EXPLORE PACKAGING</span>
+                VIEW EDITORIAL LOOKBOOK
               </button>
             </div>
 
-            {/* Minimal Metric Badges */}
-            <div className="grid grid-cols-4 gap-2 pt-2 border-t-2 border-black/10 font-mono-street">
-              <div>
-                <span className="text-base text-[#0A0D0C] font-black block">260-280</span>
-                <span className="text-[9px] text-[#666] uppercase tracking-wider">GSM Terry</span>
-              </div>
-              <div>
-                <span className="text-base text-[#FF3B1D] font-black block">TALISMAN</span>
-                <span className="text-[9px] text-[#666] uppercase tracking-wider">Demon Armor</span>
-              </div>
-              <div>
-                <span className="text-base text-[#0A0D0C] font-black block">KHABARDAR</span>
-                <span className="text-[9px] text-[#666] uppercase tracking-wider">Collar Tag</span>
-              </div>
-              <div>
-                <span className="text-base text-[#FFB800] font-black block">AKHADA</span>
-                <span className="text-[9px] text-[#666] uppercase tracking-wider">Heavy Lifts</span>
-              </div>
+            {/* Micro Specs Strip */}
+            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono-street text-[#666]">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2E7D32]" />
+                <span>260+ GSM Terry</span>
+              </span>
+              <span>•</span>
+              <span>100% Cotton Loopback</span>
+              <span>•</span>
+              <span>Drop-Shoulder Box Cut</span>
+              <span>•</span>
+              <span className="text-black font-bold">Pan-India COD Available</span>
             </div>
 
           </div>
 
-          {/* Right Column: DIRECT SHIRT PHOTO + NORMAL HANGING PENDULUM */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
+          {/* Right Column: Garment Visual & Interactive Talisman Pendulum */}
+          <div className="lg:col-span-5 relative flex flex-col items-center">
             
-            {/* Direct Model Photo with Clean Border & Offset Shadow */}
-            <div className="relative w-full max-w-[340px] sm:max-w-[370px] h-[400px] sm:h-[450px] rounded-2xl overflow-hidden border-4 border-black neo-shadow-lg flex items-center justify-center bg-white wabi-sabi-2">
+            {/* The Real Hanging Talisman Pendulum with realistic physics */}
+            <div 
+              onClick={handlePendulumTap}
+              title="Tap to swing the protective talisman"
+              className={`absolute -top-6 sm:-top-8 right-1 sm:right-6 z-30 cursor-pointer select-none origin-top transition-transform duration-300 ${
+                swayWild 
+                  ? 'animate-[wiggle_0.4s_ease-in-out_infinite] scale-105' 
+                  : 'animate-[pendulum_4s_ease-in-out_infinite]'
+              }`}
+            >
+              <div className="w-[1.5px] h-10 sm:h-14 bg-black/40 mx-auto" />
               <img 
-                src={current.image} 
-                alt={current.name}
-                className="w-full h-full object-cover object-top filter contrast-105 transition-all duration-300" 
+                src="/nimbu-mirchi.png" 
+                alt="Totka Nimbu Mirchi Talisman" 
+                className="w-16 sm:w-20 h-auto object-contain drop-shadow-lg hover:scale-105 transition-transform"
               />
-
-              {/* Minimal Clean Switcher Tabs at top left */}
-              <div className="absolute top-3 left-3 flex gap-1.5 bg-white/95 backdrop-blur-md p-1 rounded-lg border-2 border-black z-20">
-                <button
-                  onClick={() => setActiveShirt(0)}
-                  className={`px-2.5 py-0.5 rounded text-[10px] font-mono-street transition-colors ${
-                    activeShirt === 0 ? 'bg-black text-white font-bold' : 'text-black/60 hover:text-black font-medium'
-                  }`}
-                >
-                  Charcoal
-                </button>
-                <button
-                  onClick={() => setActiveShirt(1)}
-                  className={`px-2.5 py-0.5 rounded text-[10px] font-mono-street transition-colors ${
-                    activeShirt === 1 ? 'bg-black text-white font-bold' : 'text-black/60 hover:text-black font-medium'
-                  }`}
-                >
-                  Off-White
-                </button>
-              </div>
-
-              {/* Bottom Label in Neo-brutalist style */}
-              <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md py-2 px-3 border-2 border-black rounded-lg flex items-center justify-between text-xs">
-                <div>
-                  <span className="font-heading font-black text-black block text-xs">{current.name}</span>
-                  <span className="text-[10px] text-[#666] font-mono-street">{current.color}</span>
-                </div>
-                <button
-                  onClick={() => {
-                    audioFX.playDhishum();
-                    onShopClick();
-                  }}
-                  className="bg-[#FFB800] hover:bg-[#FFA500] text-black border border-black px-2.5 py-1 rounded text-[10px] font-mono-street font-bold uppercase neo-shadow-sm active:translate-y-0.5"
-                >
-                  SHOP {current.price}
-                </button>
+              <div className="bg-black/80 backdrop-blur-sm text-[#FFB800] text-[8px] font-mono-street px-1.5 py-0.5 rounded text-center font-bold tracking-wider uppercase mt-0.5 border border-black/20">
+                TAP TO WARD
               </div>
             </div>
 
-            {/* NORMAL, CLEAN HANGING NIMBU-MIRCHI PENDULUM (NATURAL SWAY, NO EXTRA GIMMICKS) */}
-            <div 
-              onClick={handlePendulumTap}
-              className={`absolute -top-4 right-2 sm:right-6 cursor-pointer select-none z-30 ${
-                swayWild ? 'animate-pendulum-wild' : 'animate-pendulum'
-              }`}
-              title="Hanging Totka Talisman"
-            >
-              <img 
-                src="/nimbu-mirchi.png" 
-                alt="Authentic Hanging Nimbu Mirchi Talisman"
-                className="h-44 sm:h-52 w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform" 
-              />
+            {/* Direct Model Garment Stage (Minimal & Elevated) */}
+            <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] bg-white rounded-3xl border border-black/15 p-3 sm:p-4 shadow-sm overflow-hidden flex flex-col justify-between">
+              
+              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#F4F1EA]">
+                <img 
+                  key={current.image}
+                  src={current.image} 
+                  alt={current.name} 
+                  className="w-full h-full object-cover object-top transition-all duration-500 animate-in fade-in"
+                />
+
+                {/* Garment Details Overlay */}
+                <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3 rounded-xl border border-black/15 flex items-center justify-between shadow-sm">
+                  <div>
+                    <h4 className="font-heading text-xs sm:text-sm font-black text-black leading-tight">
+                      {current.name}
+                    </h4>
+                    <p className="text-[10px] text-[#666] font-mono-street mt-0.5">
+                      {current.color}
+                    </p>
+                  </div>
+                  <span className="font-heading text-sm font-black text-black">
+                    {current.price}
+                  </span>
+                </div>
+              </div>
+
+              {/* Garment Switcher Pills */}
+              <div className="pt-3 flex gap-2 w-full">
+                {shirts.map((shirt, idx) => (
+                  <button
+                    key={shirt.name}
+                    onClick={() => {
+                      audioFX.playFlick();
+                      setActiveShirt(idx);
+                    }}
+                    className={`flex-1 py-1.5 px-2 rounded-xl text-[10px] font-mono-street font-bold transition-all truncate border ${
+                      activeShirt === idx
+                        ? 'bg-[#121212] text-[#FFB800] border-black shadow-sm'
+                        : 'bg-[#FAF8F5] text-black border-black/15 hover:border-black'
+                    }`}
+                  >
+                    {idx === 0 ? 'CHARCOAL (260 GSM)' : 'OFF-WHITE (280 GSM)'}
+                  </button>
+                ))}
+              </div>
+
             </div>
 
           </div>
 
         </div>
       </div>
+
     </section>
   );
 }

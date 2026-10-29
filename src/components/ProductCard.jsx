@@ -35,63 +35,63 @@ export default function ProductCard({ product, onAddToCart, onOpenDetail }) {
         audioFX.playFlick();
         onOpenDetail(product);
       }}
-      className="group cursor-pointer relative bg-white rounded-xl border-3 border-[#0A0D0C] transition-all duration-200 flex flex-col justify-between overflow-hidden neo-shadow"
+      className="group cursor-pointer relative bg-white rounded-2xl border border-black/15 hover:border-black transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-lg"
     >
       
-      {/* Compact Product Image Stage */}
-      <div className="relative h-60 sm:h-64 w-full bg-[#EFECE3] overflow-hidden flex items-center justify-center border-b-2 border-black">
+      {/* Product Image Stage */}
+      <div className="relative h-64 sm:h-72 w-full bg-[#F4F1EA] overflow-hidden flex items-center justify-center border-b border-black/10">
         <img 
           src={product.image} 
           alt={product.name} 
-          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           loading="lazy"
         />
 
         {/* Minimal Badges */}
-        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
-          <span className="bg-black text-white text-[9px] font-mono-street uppercase tracking-widest px-2 py-0.5 rounded font-bold">
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+          <span className="bg-[#121212] text-white text-[9px] font-mono-street uppercase tracking-wider px-2 py-0.5 rounded font-bold">
             {product.badge}
           </span>
-          <span className="bg-[#FFB800] text-black border border-black text-[9px] font-mono-street font-bold px-1.5 py-0.5 rounded">
+          <span className="bg-[#FAF8F5] text-black border border-black/20 text-[9px] font-mono-street font-bold px-2 py-0.5 rounded shadow-sm">
             {product.gsm} GSM
           </span>
         </div>
 
         {/* Subtle Quick Inspect Overlay on bottom of image */}
-        <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-          <div className="bg-black/90 backdrop-blur-md text-white text-[11px] py-1.5 px-2.5 rounded flex items-center justify-between font-mono-street font-bold">
-            <span>INSPECT FABRIC & FIT</span>
-            <ArrowUpRight className="w-3 h-3 text-[#FFB800]" />
+        <div className="absolute bottom-2.5 left-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+          <div className="bg-black/90 backdrop-blur-md text-white text-[11px] py-1.5 px-3 rounded-lg flex items-center justify-between font-mono-street font-bold">
+            <span>INSPECT FABRIC & TRIMS</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#FFB800]" />
           </div>
         </div>
       </div>
 
       {/* Product Details Section */}
-      <div className="p-4 flex-1 flex flex-col justify-between space-y-3 bg-white">
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3.5 bg-white">
         
         <div className="space-y-1">
-          <div className="flex items-center justify-between text-[10px] font-mono-street uppercase tracking-wider text-[#666]">
+          <div className="flex items-center justify-between text-[10px] font-mono-street uppercase tracking-wider text-[#777]">
             <span>{product.category}</span>
-            <span className="text-[#FF3B1D] font-bold">{product.fit}</span>
+            <span className="text-[#E03115] font-bold">{product.fit}</span>
           </div>
 
-          <h3 className="font-heading text-base font-black text-black leading-snug group-hover:text-[#FF3B1D] transition-colors truncate">
+          <h3 className="font-heading text-base font-black text-black leading-snug group-hover:text-[#E03115] transition-colors truncate">
             {product.name}
           </h3>
 
-          <p className="text-[11px] text-[#555] truncate font-mono-street">
+          <p className="text-[11px] text-[#666] truncate font-mono-street">
             {product.frontGraphic}
           </p>
         </div>
 
-        {/* Compact Size Selector */}
-        <div className="space-y-1" onClick={(e) => e.stopPropagation()}>
-          <div className="flex items-center justify-between text-[10px] text-[#666] font-medium font-mono-street">
-            <span>STREET FIT</span>
-            <span className="text-black font-bold">BOX CUT</span>
+        {/* Size Selector */}
+        <div className="space-y-1.5" onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-center justify-between text-[10px] text-[#777] font-medium font-mono-street">
+            <span>STREET CUT</span>
+            <span className="text-black font-bold">BOX FIT</span>
           </div>
 
-          <div className="flex gap-1">
+          <div className="flex gap-1.5">
             {product.sizes.map((size) => (
               <button
                 key={size}
@@ -100,10 +100,10 @@ export default function ProductCard({ product, onAddToCart, onOpenDetail }) {
                   audioFX.playFlick();
                   setSelectedSize(size);
                 }}
-                className={`flex-1 py-1 text-[11px] font-mono-street rounded transition-colors ${
+                className={`flex-1 py-1 text-[11px] font-mono-street rounded-lg transition-all ${
                   selectedSize === size
-                    ? 'bg-black text-white font-bold'
-                    : 'bg-[#F2EDE4] text-black hover:bg-[#E5DFD3] border border-black/20'
+                    ? 'bg-black text-white font-bold shadow-sm'
+                    : 'bg-[#FAF8F5] text-black hover:bg-neutral-100 border border-black/15'
                 }`}
               >
                 {size}
@@ -113,7 +113,7 @@ export default function ProductCard({ product, onAddToCart, onOpenDetail }) {
         </div>
 
         {/* Pricing and Action Bar */}
-        <div className="pt-2.5 border-t border-black/10 flex items-center justify-between gap-2">
+        <div className="pt-3 border-t border-black/10 flex items-center justify-between gap-2">
           <div className="flex items-baseline gap-1.5">
             <span className="font-heading text-lg font-black text-black">
               ₹{product.price}
@@ -126,21 +126,21 @@ export default function ProductCard({ product, onAddToCart, onOpenDetail }) {
           <button
             onClick={handleQuickAdd}
             disabled={added}
-            className={`px-3 py-1.5 rounded text-xs font-bold font-mono-street uppercase tracking-wider transition-all duration-150 flex items-center gap-1 border-2 border-black ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono-street uppercase tracking-wider transition-all duration-150 flex items-center gap-1.5 border border-black ${
               added
                 ? 'bg-emerald-500 text-black font-bold'
-                : 'bg-[#FFB800] hover:bg-[#FFA500] text-black neo-shadow-sm active:translate-y-0.5'
+                : 'bg-[#121212] hover:bg-black text-[#FFB800] shadow-sm active:translate-y-0.5'
             }`}
           >
             {added ? (
               <>
-                <Check className="w-3 h-3" />
-                <span>ADDED</span>
+                <Check className="w-3.5 h-3.5 text-white" />
+                <span className="text-white">ADDED</span>
               </>
             ) : (
               <>
-                <ShoppingBag className="w-3 h-3" />
-                <span>ADD</span>
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>COMMISSION</span>
               </>
             )}
           </button>

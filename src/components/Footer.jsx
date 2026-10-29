@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import { audioFX } from '../utils/audio';
 
-export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStudio }) {
+export default function Footer({ onNavigate }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -16,23 +16,28 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
     setSubscribed(true);
   };
 
+  const handleNav = (page) => {
+    audioFX.playFlick();
+    if (onNavigate) onNavigate(page);
+  };
+
   return (
-    <footer className="bg-[#FAF8F5] text-black border-t-4 border-black relative overflow-hidden">
+    <footer className="bg-[#FAF8F5] text-black border-t border-black/15 relative overflow-hidden">
       
-      {/* 1. Truck Art Warning Banner */}
-      <div className="bg-[#FFB800] text-black py-3 px-4 border-b-3 border-black font-heading font-black text-sm sm:text-base tracking-wider uppercase text-center flex items-center justify-center gap-3">
+      {/* 1. Sarcastic Warning Banner (Refined Streetwear Style) */}
+      <div className="bg-[#121212] text-white py-3.5 px-4 font-heading font-black text-xs sm:text-sm tracking-[0.15em] uppercase text-center flex items-center justify-center gap-3">
         <span>🌶️ BURI NAZAR WAALE TERA WEIGHT DROP...</span>
-        <span className="hidden sm:inline bg-black text-[#FFB800] px-2 py-0.5 rounded font-mono-street text-[10px] font-bold">
+        <span className="hidden sm:inline bg-[#FFB800] text-black px-2 py-0.5 rounded font-mono-street text-[10px] font-bold">
           100% CERTIFIED TOTKA
         </span>
         <span>AUR HAMARA TEE BANGER! 🍋</span>
       </div>
 
       {/* 2. Trust Badges Strip */}
-      <div className="border-b-2 border-black/15 bg-white py-4 px-4 sm:px-6">
+      <div className="border-b border-black/10 bg-white py-5 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-black shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-black/15 shrink-0">
               <Lock className="w-4 h-4 text-black" />
             </div>
             <div>
@@ -41,9 +46,9 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-black shrink-0">
-              <Truck className="w-4 h-4 text-[#FF3B1D]" />
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-black/15 shrink-0">
+              <Truck className="w-4 h-4 text-[#E03115]" />
             </div>
             <div>
               <h5 className="font-heading text-xs font-black text-black uppercase">Pan-India Express Dispatch</h5>
@@ -51,8 +56,8 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-black shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-black/15 shrink-0">
               <RefreshCw className="w-4 h-4 text-black" />
             </div>
             <div>
@@ -61,8 +66,8 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-[#FAF8F5] border border-black shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-black/15 shrink-0">
               <Sparkles className="w-4 h-4 text-[#FFB800]" />
             </div>
             <div>
@@ -87,41 +92,35 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
               />
             </div>
             
-            <p className="text-xs text-[#555] max-w-sm leading-relaxed">
-              Vibrant, comic, and premium Indian activewear & comfort-wear. Heavyweight 240+ to 280 GSM silhouettes rooted in desi superstition, iron akhadas, and witty bakchodi.
+            <p className="text-xs text-[#555] max-w-sm leading-relaxed font-mono-street">
+              Vibrant, comic, and premium Indian activewear & comfort-wear. Heavyweight 240+ to 280 GSM silhouettes rooted in desi superstition, iron akhadas, and witty banter.
             </p>
 
             <div className="flex items-center gap-2 pt-1">
               <button 
-                onClick={() => {
-                  audioFX.playFlick();
-                  if (onOpenTracking) onOpenTracking();
-                }}
-                className="bg-[#FFB800] hover:bg-[#FFA500] text-black border-2 border-black px-3 py-1.5 rounded text-xs font-mono-street font-bold uppercase flex items-center gap-1.5 neo-shadow-sm active:translate-y-0.5"
+                onClick={() => handleNav('track')}
+                className="bg-[#121212] hover:bg-black text-[#FFB800] px-3.5 py-2 rounded-xl text-xs font-mono-street font-bold uppercase flex items-center gap-1.5 shadow-sm transition-all"
               >
-                <Truck className="w-3.5 h-3.5" />
+                <Truck className="w-3.5 h-3.5 text-[#FFB800]" />
                 <span>Track My Parcel</span>
               </button>
 
               <button 
-                onClick={() => {
-                  audioFX.playFlick();
-                  if (onOpenProfile) onOpenProfile();
-                }}
-                className="bg-white hover:bg-[#EFECE3] text-black border-2 border-black px-3 py-1.5 rounded text-xs font-mono-street font-bold uppercase neo-shadow-sm"
+                onClick={() => handleNav('profile')}
+                className="bg-white hover:bg-neutral-100 text-black border border-black/20 px-3.5 py-2 rounded-xl text-xs font-mono-street font-bold uppercase shadow-sm transition-all"
               >
-                Lifter Profile
+                Lifter Account
               </button>
             </div>
 
             <div className="pt-2 flex items-center gap-2">
-              <a href="#" title="Share" className="p-2 rounded bg-white text-black hover:bg-[#FFB800] border-2 border-black transition-colors neo-shadow-sm">
+              <a href="#" title="Share" className="p-2.5 rounded-xl bg-white text-black hover:bg-neutral-100 border border-black/15 transition-colors shadow-sm">
                 <Share2 className="w-4 h-4" />
               </a>
-              <a href="#contact" title="WhatsApp Tapri" className="p-2 rounded bg-white text-black hover:bg-[#FFB800] border-2 border-black transition-colors neo-shadow-sm">
+              <a href="#contact" title="WhatsApp Tapri" className="p-2.5 rounded-xl bg-white text-black hover:bg-neutral-100 border border-black/15 transition-colors shadow-sm">
                 <MessageCircle className="w-4 h-4" />
               </a>
-              <a href="#" title="Website" className="p-2 rounded bg-white text-black hover:bg-[#FFB800] border-2 border-black transition-colors neo-shadow-sm">
+              <a href="#" title="Website" className="p-2.5 rounded-xl bg-white text-black hover:bg-neutral-100 border border-black/15 transition-colors shadow-sm">
                 <Globe className="w-4 h-4" />
               </a>
             </div>
@@ -133,20 +132,17 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
               THE ARSENAL
             </h4>
             <ul className="space-y-1.5 text-xs text-[#555] font-mono-street font-medium">
-              <li><a href="#drops" className="hover:text-black hover:underline">Drop 01: Akhada Edition</a></li>
-              <li><a href="#drops" className="hover:text-black hover:underline">260 GSM Pump Covers</a></li>
-              <li><a href="#drops" className="hover:text-black hover:underline">Nimbu-Mirchi Mesh Shorts</a></li>
-              <li><a href="#unboxing" className="hover:text-black hover:underline">The Totka Mystery Box</a></li>
+              <li><button onClick={() => handleNav('home')} className="hover:text-black hover:underline text-left">Drop 01: Akhada Edition</button></li>
+              <li><button onClick={() => handleNav('home')} className="hover:text-black hover:underline text-left">260 GSM Pump Covers</button></li>
+              <li><button onClick={() => handleNav('home')} className="hover:text-black hover:underline text-left">Nimbu-Mirchi Mesh Shorts</button></li>
+              <li><button onClick={() => handleNav('lookbook')} className="hover:text-black hover:underline text-left">Editorial Lookbook</button></li>
               <li>
                 <button 
-                  onClick={() => {
-                    audioFX.playFlick();
-                    if (onOpenCustomStudio) onOpenCustomStudio();
-                  }}
-                  className="text-black font-bold hover:underline flex items-center gap-1"
+                  onClick={() => handleNav('custom')}
+                  className="text-black font-bold hover:underline flex items-center gap-1.5"
                 >
-                  <span>Bespoke Custom Lab</span>
-                  <span className="text-[9px] bg-[#FF3B1D] text-white px-1 rounded">USP</span>
+                  <span>Bespoke Atelier</span>
+                  <span className="text-[9px] bg-[#E03115] text-white px-1.5 rounded">USP</span>
                 </button>
               </li>
             </ul>
@@ -160,19 +156,16 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
             <ul className="space-y-1.5 text-xs text-[#555] font-mono-street font-medium">
               <li>
                 <button 
-                  onClick={() => {
-                    audioFX.playFlick();
-                    if (onOpenTracking) onOpenTracking();
-                  }}
+                  onClick={() => handleNav('track')}
                   className="text-black font-bold hover:underline flex items-center gap-1.5"
                 >
                   <span className="w-2 h-2 rounded-full bg-[#2E7D32] animate-pulse" />
                   <span>Live Parcel Dispatch Tracker</span>
                 </button>
               </li>
+              <li><button onClick={() => handleNav('profile')} className="hover:text-black hover:underline text-left">Lifter Dossier & Orders</button></li>
               <li><a href="#contact" className="hover:text-black hover:underline">Contact Tapri Desk</a></li>
               <li><a href="#contact" className="hover:text-black hover:underline">Size & GSM Selection Guide</a></li>
-              <li><a href="#contact" className="hover:text-black hover:underline">Shipping & Dispatch Timelines</a></li>
               <li><a href="#contact" className="hover:text-black hover:underline">7-Day Replacement Policy</a></li>
             </ul>
           </div>
@@ -182,13 +175,13 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
             <h4 className="font-heading text-xs font-black text-black tracking-wider uppercase">
               NAZAR-PROOF LIFTER CLUB
             </h4>
-            <p className="text-xs text-[#555] leading-relaxed">
+            <p className="text-xs text-[#555] leading-relaxed font-mono-street">
               Get secret drops, comic sticker alerts, and ₹150 off code for your next PR pump cover.
             </p>
 
             {subscribed ? (
-              <div className="p-2.5 bg-[#FFB800] border-2 border-black rounded text-black font-mono-street text-xs font-bold flex items-center gap-1.5">
-                <Check className="w-4 h-4" />
+              <div className="p-2.5 bg-[#FFFDE6] border border-[#B78103]/40 rounded-xl text-black font-mono-street text-xs font-bold flex items-center gap-1.5">
+                <Check className="w-4 h-4 text-green-600" />
                 <span>You're protected! Use code <strong>TOTKA150</strong> at checkout.</span>
               </div>
             ) : (
@@ -199,11 +192,11 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter lifter email..."
                   required
-                  className="flex-1 bg-white border-2 border-black text-xs px-3 py-2 rounded text-black outline-none font-mono-street"
+                  className="flex-1 bg-white border border-black/20 text-xs px-3 py-2.5 rounded-xl text-black outline-none font-mono-street focus:border-black"
                 />
                 <button
                   type="submit"
-                  className="bg-black hover:bg-[#222] text-[#FFB800] font-mono-street px-3 py-2 rounded uppercase text-xs font-bold border-2 border-black neo-shadow-sm active:translate-y-0.5"
+                  className="bg-[#121212] hover:bg-black text-[#FFB800] font-mono-street px-4 py-2.5 rounded-xl uppercase text-xs font-bold transition-all shadow-sm"
                 >
                   JOIN
                 </button>
@@ -217,11 +210,10 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
 
         </div>
 
-        {/* 4. Detailed Payment Methods & Gateways Grid */}
-        <div className="mt-10 pt-6 border-t-2 border-black/15">
+        {/* 4. Accepted Payment Gateways */}
+        <div className="mt-10 pt-6 border-t border-black/10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             
-            {/* Payment Details Text */}
             <div className="space-y-1">
               <div className="flex items-center gap-2">
                 <CreditCard className="w-4 h-4 text-black" />
@@ -234,38 +226,37 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
               </p>
             </div>
 
-            {/* Badges / Logos */}
             <div className="flex flex-wrap items-center gap-2">
-              <div className="bg-white border border-black/30 rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-black flex items-center gap-1.5 shadow-sm">
+              <div className="bg-white border border-black/20 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-black flex items-center gap-1.5 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#2E7D32]" />
                 <span>UPI / QR</span>
               </div>
 
-              <div className="bg-white border border-black/30 rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#4285F4] shadow-sm">
+              <div className="bg-white border border-black/20 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#4285F4] shadow-sm">
                 Google Pay
               </div>
 
-              <div className="bg-white border border-black/30 rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#5f259f] shadow-sm">
+              <div className="bg-white border border-black/20 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#5f259f] shadow-sm">
                 PhonePe
               </div>
 
-              <div className="bg-white border border-black/30 rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#00b9f5] shadow-sm">
+              <div className="bg-white border border-black/20 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#00b9f5] shadow-sm">
                 Paytm
               </div>
 
-              <div className="bg-white border border-black/30 rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#097939] shadow-sm">
+              <div className="bg-white border border-black/20 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#097939] shadow-sm">
                 RuPay
               </div>
 
-              <div className="bg-white border border-black/30 rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#1A1F71] shadow-sm">
+              <div className="bg-white border border-black/20 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#1A1F71] shadow-sm">
                 VISA
               </div>
 
-              <div className="bg-white border border-black/30 rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#EB001B] shadow-sm">
+              <div className="bg-white border border-black/20 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-[#EB001B] shadow-sm">
                 Mastercard
               </div>
 
-              <div className="bg-[#FFB800] border border-black rounded px-2.5 py-1 text-[11px] font-mono-street font-bold text-black shadow-sm">
+              <div className="bg-[#FAF8F5] border border-black/25 rounded-lg px-2.5 py-1 text-[11px] font-mono-street font-bold text-black shadow-sm">
                 Cash on Delivery (COD)
               </div>
             </div>
@@ -273,16 +264,14 @@ export default function Footer({ onOpenTracking, onOpenProfile, onOpenCustomStud
           </div>
         </div>
 
-        {/* 5. Bottom Copyright Bar */}
-        <div className="mt-8 pt-4 border-t-2 border-black/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#666] font-mono-street gap-2 font-medium">
+        {/* 5. Copyright Bar */}
+        <div className="mt-8 pt-4 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#777] font-mono-street gap-2 font-medium">
           <p>
             &copy; {new Date().getFullYear()} TOTKA ACTIVEWEAR & ATHLETICS. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex items-center gap-3">
-            <span className="text-black font-bold">
-              HAND-CRAFTED FOR STREETS & SQUATS ACROSS BHARAT 🇮🇳
-            </span>
-          </div>
+          <p className="text-black font-bold">
+            HAND-CRAFTED FOR STREETS & SQUATS ACROSS BHARAT 🇮🇳
+          </p>
         </div>
 
       </div>
