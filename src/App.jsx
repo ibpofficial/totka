@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import ProductDetailModal from './components/ProductDetailModal';
+import { LiquidGlassFilterDef } from './components/LiquidGlass';
 
 // Dedicated Full Pages
 import HomePage from './pages/HomePage';
@@ -14,6 +15,7 @@ import ProfilePage from './pages/ProfilePage';
 import CheckoutPage from './pages/CheckoutPage';
 
 import { PRODUCTS } from './data/products';
+import { StoreService } from './services/store';
 import { audioFX } from './utils/audio';
 
 export default function App() {
@@ -24,9 +26,14 @@ export default function App() {
       : 'home';
   });
 
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => StoreService.getCart());
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedProductDetail, setSelectedProductDetail] = useState(null);
+
+  // Sync cart changes with StoreService
+  useEffect(() => {
+    StoreService.saveCart(cart);
+  }, [cart]);
 
   // Sync hash changes with browser history
   useEffect(() => {
@@ -99,12 +106,15 @@ export default function App() {
   const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-[#F7F6F2] text-[#121212] flex flex-col font-sans selection:bg-[#FFB800] selection:text-black">
+    <div className="min-h-screen bg-[#F7F6F2] text-[#0E100F] flex flex-col font-sans selection:bg-[#FFB800] selection:text-black">
       
+      {/* SVG Liquid Refraction Filter definition for LiquidGlass optics */}
+      <LiquidGlassFilterDef />
+
       {/* 1. Sleek Top Hazard Ticker (Luxury Monochrome + Vermillion Accents) */}
       <HazardTicker />
 
-      {/* 2. Sticky Brand Header with Multi-Page Navigation */}
+      {/* 2. Floating Liquid Glass Header with Multi-Page Navigation */}
       <Navbar 
         currentPage={currentPage}
         onNavigate={navigateTo}
