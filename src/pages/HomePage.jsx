@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
-import TheTotkaLook from '../components/TheTotkaLook';
-import TotkaBoxUnboxing from '../components/TotkaBoxUnboxing';
-import StreetLore from '../components/StreetLore';
 import ContactSection from '../components/ContactSection';
-import LiquidGlass from '../components/LiquidGlass';
-import { PRODUCTS } from '../data/products';
+import { PRODUCTS, TOTKA_TRIMS, STREET_LORE } from '../data/products';
 import { StoreService } from '../services/store';
-import { Flame, Star, ShieldCheck, Wand2, ArrowRight, MessageSquarePlus, Check, Sparkles } from 'lucide-react';
+import { 
+  Flame, Star, ShieldCheck, Wand2, ArrowRight, 
+  MessageSquarePlus, Check, Sparkles, Package, Eye, Shield 
+} from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { audioFX } from '../utils/audio';
 
@@ -84,7 +83,7 @@ export default function HomePage({
   return (
     <div className="space-y-0">
       
-      {/* 1. Refined Minimal Hero Section with Liquid Glass Accents */}
+      {/* 1. Hero Section */}
       <Hero 
         onShopClick={() => {
           const el = document.getElementById('drops');
@@ -94,13 +93,13 @@ export default function HomePage({
       />
 
       {/* 2. Drop 01: Akhada to Tapri Edition */}
-      <section id="drops" className="py-16 bg-white border-b border-black/10 relative">
+      <section id="drops" className="py-16 sm:py-20 bg-white border-y border-black/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 bg-[#FAF8F5] px-3.5 py-1 rounded-full border border-black/10 text-neutral-900 text-[10px] font-mono-street uppercase tracking-widest font-bold shadow-xs">
+              <div className="inline-flex items-center gap-2 bg-[#FAF8F5] px-3.5 py-1.5 rounded-full border border-black/10 text-neutral-900 text-[10px] font-mono-street uppercase tracking-widest font-bold shadow-2xs">
                 <Flame className="w-3.5 h-3.5 text-[#E03115]" />
                 <span>OFFICIAL DROP 01 // AUTUMN 2026</span>
               </div>
@@ -113,7 +112,7 @@ export default function HomePage({
             </div>
 
             {/* Filter Pills */}
-            <div className="flex flex-wrap gap-1.5 p-1 bg-neutral-100/70 rounded-2xl border border-black/5">
+            <div className="flex flex-wrap gap-1.5 p-1 bg-neutral-100/80 rounded-2xl border border-black/5">
               {[
                 { label: 'ALL GEAR', value: 'ALL' },
                 { label: 'HEAVY TEES', value: 'TEES' },
@@ -126,7 +125,7 @@ export default function HomePage({
                     audioFX.playFlick();
                     setSelectedFilter(tab.value);
                   }}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-mono-street tracking-wider transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-xl text-xs font-mono-street tracking-wider transition-all cursor-pointer ${
                     selectedFilter === tab.value
                       ? 'bg-[#0E100F] text-[#FAF8F5] font-bold shadow-xs'
                       : 'text-neutral-600 hover:text-black hover:bg-white/60'
@@ -139,7 +138,7 @@ export default function HomePage({
           </div>
 
           {/* Product Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredProducts.map((product) => (
               <ProductCard 
                 key={product.id}
@@ -151,10 +150,7 @@ export default function HomePage({
           </div>
 
           {/* Bespoke Atelier Liquid Glass Banner */}
-          <LiquidGlass
-            variant="light"
-            className="mt-14 p-6 sm:p-8 border-white/80 shadow-[0_14px_44px_-10px_rgba(0,0,0,0.08)] flex flex-col md:flex-row items-center justify-between gap-6"
-          >
+          <div className="mt-14 liquid-glass-card rounded-3xl p-6 sm:p-8 border-white/80 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
             <div className="space-y-1.5 text-center md:text-left">
               <span className="bg-[#E03115] text-white text-[9px] font-mono-street px-2.5 py-0.5 rounded-full uppercase font-bold tracking-wider inline-block">
                 BESPOKE ATELIER // MAIN USP
@@ -172,27 +168,70 @@ export default function HomePage({
                 audioFX.playDhishum();
                 onNavigate('custom');
               }}
-              className="shrink-0 bg-[#0E100F] hover:bg-black text-[#FFB800] text-xs font-mono-street font-bold px-6 py-3 rounded-xl uppercase tracking-wider flex items-center gap-2 shadow-sm transition-all active:scale-95 cursor-pointer"
+              className="shrink-0 bg-[#0E100F] hover:bg-black text-[#FFB800] text-xs font-mono-street font-bold px-6 py-3 rounded-2xl uppercase tracking-wider flex items-center gap-2 shadow-xs transition-all active:scale-95 cursor-pointer"
             >
               <Wand2 className="w-4 h-4 text-[#FFB800]" />
               <span>OPEN BESPOKE ATELIER</span>
             </button>
-          </LiquidGlass>
+          </div>
 
         </div>
       </section>
 
-      {/* 3. The Totka Look: Anatomical Trims & Fabric Exploded View */}
-      <TheTotkaLook />
+      {/* 3. Anatomical Craftsmanship & Fabric Trim Inspection */}
+      <section className="py-16 sm:py-20 bg-[#F8F7F4] border-b border-black/10 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-2xl mx-auto space-y-2 mb-12">
+            <span className="text-[10px] font-mono-street uppercase tracking-[0.2em] text-[#E03115] font-bold">
+              FABRIC ENGINEERING & ANATOMY
+            </span>
+            <h3 className="font-heading text-2xl sm:text-4xl font-black text-black tracking-tight uppercase">
+              THE 260+ GSM HEAVYWEAR STANDARD
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-600 font-mono-street">
+              Engineered to outlast chalk dust, heavy knurling, barbell friction, and washer cycles without collar sag.
+            </p>
+          </div>
 
-      {/* 4. The Totka Box: Premium Packaging & Unboxing */}
-      <TotkaBoxUnboxing onAddBoxToCart={onAddBoxToCart} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {TOTKA_TRIMS.map((trim) => (
+              <div 
+                key={trim.id}
+                className="liquid-glass-card p-5 rounded-3xl border-white/80 space-y-3 flex flex-col justify-between shadow-2xs"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9px] font-mono-street text-[#0E100F] bg-white/80 px-2.5 py-0.5 rounded-full font-bold border border-black/10">
+                      {trim.badge}
+                    </span>
+                    <span className="text-[10px] font-mono-street text-neutral-500 font-bold">
+                      {trim.position}
+                    </span>
+                  </div>
 
-      {/* 5. Authentic Indian Akhada & Tapri Street Lore */}
-      <StreetLore />
+                  <h4 className="font-heading text-sm font-black text-black uppercase">
+                    {trim.title}
+                  </h4>
 
-      {/* 6. Real Verified Reviews & Interactive Review Logger */}
-      <section className="py-16 bg-white border-b border-black/10 relative">
+                  <p className="text-xs text-neutral-600 font-mono-street leading-relaxed">
+                    {trim.description}
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-black/10 flex items-center justify-between text-[10px] font-mono-street text-[#2E7D32] font-bold">
+                  <span>100% QUALITY ASSURED</span>
+                  <Check className="w-3.5 h-3.5" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. Real Verified Reviews & Community PR Logger */}
+      <section className="py-16 sm:py-20 bg-white border-b border-black/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
@@ -214,19 +253,16 @@ export default function HomePage({
                 audioFX.playFlick();
                 setShowReviewForm(!showReviewForm);
               }}
-              className="bg-[#0E100F] hover:bg-black text-[#FFB800] px-4 py-2 rounded-xl text-xs font-mono-street font-bold uppercase tracking-wider flex items-center gap-2 shadow-xs transition-all cursor-pointer"
+              className="bg-[#0E100F] hover:bg-black text-[#FFB800] px-4 py-2.5 rounded-2xl text-xs font-mono-street font-bold uppercase tracking-wider flex items-center gap-2 shadow-xs transition-all cursor-pointer"
             >
               <MessageSquarePlus className="w-4 h-4" />
               <span>{showReviewForm ? 'CLOSE FORM' : '+ LOG YOUR PR REVIEW'}</span>
             </button>
           </div>
 
-          {/* Interactive Review Submission Form */}
+          {/* Interactive Review Form */}
           {showReviewForm && (
-            <LiquidGlass
-              variant="light"
-              className="p-6 rounded-2xl mb-8 border-white/80 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.1)] animate-in fade-in duration-300"
-            >
+            <div className="liquid-glass-card p-6 sm:p-7 rounded-3xl mb-8 border-white/80 shadow-md animate-in fade-in duration-300">
               {reviewSubmitted ? (
                 <div className="p-6 text-center space-y-2">
                   <div className="w-10 h-10 rounded-full bg-[#E8F5E9] text-[#2E7D32] border border-[#2E7D32]/30 flex items-center justify-center mx-auto">
@@ -245,7 +281,7 @@ export default function HomePage({
                     <h4 className="font-heading text-sm font-black text-black uppercase tracking-wider">
                       SHARE YOUR LIFTER LOG
                     </h4>
-                    <span className="text-[10px] font-mono-street text-[#2E7D32] bg-[#E8F5E9] px-2 py-0.5 rounded font-bold">
+                    <span className="text-[10px] font-mono-street text-[#2E7D32] bg-[#E8F5E9] px-2.5 py-0.5 rounded-full font-bold">
                       VERIFIED BADGE
                     </span>
                   </div>
@@ -322,7 +358,7 @@ export default function HomePage({
                   </div>
                 </form>
               )}
-            </LiquidGlass>
+            </div>
           )}
 
           {/* Reviews Grid */}
@@ -330,7 +366,7 @@ export default function HomePage({
             {reviews.map((item, idx) => (
               <div 
                 key={item.id || idx}
-                className="bg-[#FAF8F5] p-5 rounded-2xl border border-black/15 space-y-3.5 flex flex-col justify-between shadow-xs transition-all hover:border-black/30"
+                className="bg-[#FAF8F5] p-5 sm:p-6 rounded-3xl border border-black/10 space-y-3.5 flex flex-col justify-between shadow-2xs transition-all hover:border-black/30"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
@@ -339,7 +375,7 @@ export default function HomePage({
                         <Star key={i} className="w-3.5 h-3.5 fill-current" />
                       ))}
                     </div>
-                    <span className="text-[9px] font-mono-street text-white bg-black px-2 py-0.5 rounded-full font-bold">
+                    <span className="text-[9px] font-mono-street text-white bg-black px-2.5 py-0.5 rounded-full font-bold">
                       {item.tag}
                     </span>
                   </div>
@@ -365,7 +401,7 @@ export default function HomePage({
         </div>
       </section>
 
-      {/* 7. Dedicated Contact Section with User's Neo-Brutalist Uiverse Card */}
+      {/* 5. Contact Tapri Section */}
       <ContactSection />
 
     </div>

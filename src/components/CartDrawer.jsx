@@ -24,46 +24,47 @@ export default function CartDrawer({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm animate-in fade-in">
-      <div className="relative w-full max-w-md bg-[#FAF8F5] h-full flex flex-col justify-between border-l border-black/20 shadow-2xl p-5 sm:p-6 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-md animate-in fade-in">
+      <div className="relative w-full max-w-md liquid-glass-card bg-[#F8F7F4]/98 h-full flex flex-col justify-between border-l border-white/60 shadow-2xl p-5 sm:p-6 overflow-hidden">
         
         {/* Top Bar */}
         <div>
-          <div className="flex items-center justify-between pb-3 border-b border-black/10">
+          <div className="flex items-center justify-between pb-3.5 border-b border-black/10">
             <div className="flex items-center gap-2">
               <span className="font-heading text-lg font-black text-black tracking-tight uppercase">
                 TOTKA BAG
               </span>
-              <span className="bg-[#121212] text-[#FFB800] text-[10px] font-mono-street font-bold px-2 py-0.5 rounded">
+              <span className="bg-[#0E100F] text-[#FFB800] text-[10px] font-mono-street font-bold px-2.5 py-0.5 rounded-full">
                 {cart.reduce((a, b) => a + b.quantity, 0)} ITEMS
               </span>
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-white hover:bg-neutral-100 text-black border border-black/20 transition-colors"
+              className="p-1.5 rounded-full bg-white/80 hover:bg-white text-neutral-800 border border-black/10 transition-colors cursor-pointer"
+              aria-label="Close cart"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Nazar Protection Status */}
-          <div className="mt-3.5 bg-white p-3 rounded-xl border border-black/15 shadow-sm flex items-center justify-between">
+          <div className="mt-3.5 liquid-glass-pill p-3 rounded-2xl flex items-center justify-between shadow-2xs">
             <div className="flex items-center gap-2.5">
               <ShieldCheck className="w-4 h-4 text-[#E03115]" />
               <div>
-                <p className="font-mono-street text-[11px] text-black font-bold">100% NAZAR-PROOF TRANSIT</p>
-                <p className="text-[10px] text-[#666] font-mono-street">Packed in double-walled craft box</p>
+                <p className="font-mono-street text-[11px] text-neutral-900 font-bold">100% NAZAR-PROOF TRANSIT</p>
+                <p className="text-[10px] text-neutral-500 font-mono-street">Packed in double-walled craft box</p>
               </div>
             </div>
-            <span className="text-[9px] font-mono-street font-bold text-black bg-[#E8F5E9] border border-[#2E7D32]/30 text-[#2E7D32] px-2 py-0.5 rounded">
-              VERIFIED
+            <span className="text-[9px] font-mono-street font-bold bg-[#E8F5E9] text-[#2E7D32] border border-[#2E7D32]/30 px-2 py-0.5 rounded-full">
+              ACTIVE
             </span>
           </div>
 
           {/* Free Gift Unlock Bar */}
-          <div className="mt-2.5 bg-[#EFECE3] p-2.5 rounded-xl border border-black/10 flex items-center gap-2">
+          <div className="mt-2.5 bg-neutral-200/50 p-2.5 rounded-2xl border border-black/5 flex items-center gap-2">
             <Gift className="w-4 h-4 text-[#E03115] shrink-0" />
-            <div className="text-[11px] text-black font-mono-street flex-1 font-medium">
+            <div className="text-[11px] text-neutral-800 font-mono-street flex-1 font-medium">
               {eligibleForFreeGift ? (
                 <span className="text-black font-bold">
                   ★ Complimentary 3D Lemon-Chilli Keychain Added!
@@ -85,15 +86,15 @@ export default function CartDrawer({
               <h4 className="font-heading text-sm font-black text-black tracking-wide uppercase">
                 YOUR BAG IS CURRENTLY EMPTY
               </h4>
-              <p className="text-[11px] text-[#666] max-w-xs mx-auto font-mono-street">
-                No heavyweight drop-shoulder armor added yet. Explore Drop 01 or craft your custom armor.
+              <p className="text-[11px] text-neutral-500 max-w-xs mx-auto font-mono-street">
+                No heavyweight drop-shoulder armor added yet. Explore Drop 01 or craft your bespoke piece.
               </p>
             </div>
           ) : (
             cart.map((item, idx) => (
               <div 
                 key={`${item.id}-${item.selectedSize}-${idx}`}
-                className="bg-white p-3.5 rounded-2xl border border-black/15 flex gap-3.5 items-center shadow-sm"
+                className="bg-white/85 p-3.5 rounded-2xl border border-black/10 flex gap-3.5 items-center shadow-xs"
               >
                 <img 
                   src={item.image} 
@@ -105,7 +106,7 @@ export default function CartDrawer({
                   <h4 className="font-heading text-xs font-bold text-black truncate">
                     {item.name}
                   </h4>
-                  <div className="flex items-center gap-2 text-[10px] text-[#666] mt-0.5 font-mono-street">
+                  <div className="flex items-center gap-2 text-[10px] text-neutral-500 mt-0.5 font-mono-street">
                     <span>Size: <strong className="text-black">{item.selectedSize}</strong></span>
                     <span>•</span>
                     <span>{item.gsm} GSM</span>
@@ -119,15 +120,16 @@ export default function CartDrawer({
                 <div className="flex flex-col items-end gap-2">
                   <button
                     onClick={() => onRemoveItem(item.id, item.selectedSize)}
-                    className="text-black/40 hover:text-[#E03115] transition-colors p-1"
+                    className="text-neutral-400 hover:text-[#E03115] transition-colors p-1 cursor-pointer"
+                    aria-label="Remove item"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
 
-                  <div className="flex items-center gap-1.5 bg-[#FAF8F5] rounded-lg px-2 py-0.5 border border-black/15">
+                  <div className="flex items-center gap-1.5 bg-[#FAF8F5] rounded-xl px-2 py-0.5 border border-black/10">
                     <button
                       onClick={() => onUpdateQuantity(item.id, item.selectedSize, item.quantity - 1)}
-                      className="text-[11px] text-black hover:text-[#E03115] font-bold"
+                      className="text-[11px] text-black hover:text-[#E03115] font-bold cursor-pointer"
                     >
                       <Minus className="w-3 h-3" />
                     </button>
@@ -136,7 +138,7 @@ export default function CartDrawer({
                     </span>
                     <button
                       onClick={() => onUpdateQuantity(item.id, item.selectedSize, item.quantity + 1)}
-                      className="text-[11px] text-black hover:text-[#E03115] font-bold"
+                      className="text-[11px] text-black hover:text-[#E03115] font-bold cursor-pointer"
                     >
                       <Plus className="w-3 h-3" />
                     </button>
@@ -150,7 +152,7 @@ export default function CartDrawer({
 
         {/* Footer Checkout */}
         <div className="pt-3 border-t border-black/10 space-y-3">
-          <div className="space-y-1 text-xs text-[#555] font-mono-street">
+          <div className="space-y-1 text-xs text-neutral-600 font-mono-street">
             <div className="flex justify-between">
               <span>Subtotal</span>
               <span className="font-bold text-black">₹{subtotal}</span>
@@ -174,13 +176,13 @@ export default function CartDrawer({
           <button
             onClick={handleCheckout}
             disabled={cart.length === 0}
-            className="w-full bg-[#121212] hover:bg-black disabled:opacity-40 text-[#FFB800] font-mono-street text-xs font-bold py-3.5 rounded-xl uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg active:translate-y-0.5"
+            className="w-full bg-[#0E100F] hover:bg-black disabled:opacity-40 text-[#FFB800] font-mono-street text-xs font-bold py-3.5 rounded-2xl uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 cursor-pointer"
           >
             <span>PROCEED TO SECURE CHECKOUT</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 
-          <p className="text-[10px] text-center text-[#777] font-mono-street">
+          <p className="text-[10px] text-center text-neutral-500 font-mono-street">
             COD PAN-INDIA • 7-DAY EASY REPLACEMENTS
           </p>
         </div>
